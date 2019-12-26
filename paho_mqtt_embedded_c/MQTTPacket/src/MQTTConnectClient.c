@@ -71,7 +71,7 @@ int MQTTSerialize_connect(unsigned char* buf, int buflen, MQTTPacket_connectData
 	}
 
 	header.byte = 0;
-	header.bits.type = CONNECT;
+	header.bits.type = CONNEC;
 	writeChar(&ptr, header.byte); /* write header */
 
 	ptr += MQTTPacket_encode(ptr, len); /* write remaining length */

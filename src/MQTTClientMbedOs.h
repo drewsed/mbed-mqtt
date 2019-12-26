@@ -18,6 +18,7 @@
 #ifndef MQTT_CLIENT_MBED_OS_H
 #define MQTT_CLIENT_MBED_OS_H
 
+//#include "WIZnetInterface.h"
 #include <TCPSocket.h>
 #include <TLSSocket.h>
 #include <DTLSSocket.h>
@@ -107,13 +108,14 @@ public:
      * @param _socket socket to be used for communication
      */
     MQTTClient(TCPSocket *_socket);
+    //MQTTClient(TCPSocketConnection *_socket);
     /**
      * @brief Constructor for the TLSSocket-based communication.
      * MQTT protocol will be used over a secure socket.
      *
      * @param _socket socket to be used for communication
      */
-    MQTTClient(TLSSocket *_socket);
+//    MQTTClient(TLSSocket *_socket);
     /**
      * @brief Constructor for the UDPSocket-based communication.
      * MQTT-SN protocol will be used.
@@ -127,7 +129,7 @@ public:
      *
      * @param _socket socket to be used for communication
      */
-    MQTTClient(DTLSSocket *_socket);
+//    MQTTClient(DTLSSocket *_socket);
 
     /**
      * @brief Connect to the MQTT broker

@@ -61,7 +61,7 @@ int MQTTDeserialize_connect(MQTTPacket_connectData* data, unsigned char* buf, in
 
 	FUNC_ENTRY;
 	header.byte = readChar(&curdata);
-	if (header.bits.type != CONNECT)
+	if (header.bits.type != CONNEC)
 		goto exit;
 
 	curdata += MQTTPacket_decodeBuf(curdata, &mylen); /* read remaining length */
