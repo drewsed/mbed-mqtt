@@ -20,8 +20,7 @@
 int MQTTNetworkMbedOs::read(unsigned char *buffer, int len, int timeout)
 {
     nsapi_size_or_error_t rc = 0;
-    //socket->set_timeout(timeout);
-    socket->set_timeout(0);
+    socket->set_timeout(timeout);
     rc = socket->recv(buffer, len);
     if (rc == NSAPI_ERROR_WOULD_BLOCK) {
         // time out and no data
@@ -40,8 +39,7 @@ int MQTTNetworkMbedOs::read(unsigned char *buffer, int len, int timeout)
 int MQTTNetworkMbedOs::write(unsigned char *buffer, int len, int timeout)
 {
     nsapi_size_or_error_t rc = 0;
-    //socket->set_timeout(timeout);
-    socket->set_timeout(0);
+    socket->set_timeout(timeout);
     rc = socket->send(buffer, len);
     if (rc == NSAPI_ERROR_WOULD_BLOCK) {
         // time out and no data
