@@ -20,17 +20,19 @@
 int MQTTNetworkMbedOs::read(unsigned char *buffer, int len, int timeout)
 {
     nsapi_size_or_error_t rc = 0;
-    socket->set_timeout(timeout);
+    //socket->set_timeout(timeout);
+    socket->set_timeout(0);
     rc = socket->recv(buffer, len);
     if (rc == NSAPI_ERROR_WOULD_BLOCK) {
         // time out and no data
         // MQTTClient.readPacket() requires 0 on time out and no data.
         return 0;
     }
-    if (rc == 0) {
+    else if (rc < 0) {
+        // Error  
         // A receive size of 0 indicates that the socket
         // was successfully closed so indicate this to MQTTClient
-        return -1;
+        //return -1;
     }
     return rc;
 }
@@ -38,7 +40,8 @@ int MQTTNetworkMbedOs::read(unsigned char *buffer, int len, int timeout)
 int MQTTNetworkMbedOs::write(unsigned char *buffer, int len, int timeout)
 {
     nsapi_size_or_error_t rc = 0;
-    socket->set_timeout(timeout);
+    //socket->set_timeout(timeout);
+    socket->set_timeout(0);
     rc = socket->send(buffer, len);
     if (rc == NSAPI_ERROR_WOULD_BLOCK) {
         // time out and no data
@@ -47,7 +50,7 @@ int MQTTNetworkMbedOs::write(unsigned char *buffer, int len, int timeout)
     }
     if (rc == 0) {
         // The socket is closed so indicate this to MQTTClient
-        return -1;
+        //return -1;
     }
     return rc;
 }

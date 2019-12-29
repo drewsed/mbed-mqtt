@@ -18,7 +18,7 @@
 #ifndef MQTT_CLIENT_MBED_OS_H
 #define MQTT_CLIENT_MBED_OS_H
 
-//#include "WIZnetInterface.h"
+#include "WIZnetInterface.h"
 #include <TCPSocket.h>
 #include <TLSSocket.h>
 #include <DTLSSocket.h>
@@ -235,7 +235,7 @@ private:
 
     Socket *socket;
     MQTTNetworkMbedOs *mqttNet;
-    NetworkInterface *net;
+    WIZnetInterface *net;
 
     MQTT::Client<MQTTNetworkMbedOs, Countdown, MBED_CONF_MBED_MQTT_MAX_PACKET_SIZE, MBED_CONF_MBED_MQTT_MAX_CONNECTIONS> *client;
     MQTTSN::Client<MQTTNetworkMbedOs, Countdown, MBED_CONF_MBED_MQTT_MAX_PACKET_SIZE, MBED_CONF_MBED_MQTT_MAX_CONNECTIONS> *clientSN;
